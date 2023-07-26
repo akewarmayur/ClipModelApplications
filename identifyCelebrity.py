@@ -7,6 +7,7 @@ from prompts import celebrityList
 from helperFunctions.detectFaces import FaceDetection
 import re
 import pandas as pd
+import argparse
 
 
 class Celebrity:
@@ -91,7 +92,7 @@ class Celebrity:
                 list_of_images.append(images_path)
             list_of_images.sort(key=self.natural_keys)
             extract_faces_df = objFD.extractFaces(list_of_images)
-            extract_faces_df.to_csv("facesInfo.csv")
+            extract_faces_df.to_csv("Results/facesInfo.csv")
 
             for ind, row in extract_faces_df.iterrows():
                 face_path = row['PaddedFacesPath']
@@ -118,5 +119,10 @@ class Celebrity:
             raise
 
 
-obj = Celebrity()
-obj.startProcess("images")
+if __name__ == '__main__':
+    my_parser = argparse.ArgumentParser()
+    my_parser.add_argument('--images_folder ', action='store', type=str, required=True)
+    args = my_parser.parse_args()
+    images_folder = args.images_folder
+    obj = Celebrity()
+    obj.startProcess(images_folder)

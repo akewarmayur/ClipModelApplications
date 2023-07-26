@@ -10,6 +10,7 @@ import re
 import pandas as pd
 import os
 import cv2
+import argparse
 
 
 class DetectEmotion:
@@ -179,11 +180,10 @@ class DetectEmotion:
             for ind, row in extract_faces_df.iterrows():
                 face_path = row['PaddedFacesPath']
                 Highest3PredictionsEmotions = self.get_prediction(face_path, list(emotion_prompts.keys()),
-                                                             3, model, preprocess)
+                                                                  3, model, preprocess)
 
                 c1 = Highest3PredictionsEmotions[0][0]
                 s1 = round(100 * Highest3PredictionsEmotions[0][1], 2)
-
 
                 detected_emotion = emotion_prompts[c1]
                 df_length1 = len(results)
@@ -203,5 +203,10 @@ class DetectEmotion:
             raise
 
 
-obj = DetectEmotion()
-obj.startProcess("images")
+if __name__ == '__main__':
+    my_parser = argparse.ArgumentParser()
+    my_parser.add_argument('--images_folder ', action='store', type=str, required=True)
+    args = my_parser.parse_args()
+    images_folder = args.images_folder
+    obj = DetectEmotion()
+    obj.startProcess(images_folder)

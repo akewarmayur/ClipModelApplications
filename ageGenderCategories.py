@@ -10,6 +10,7 @@ import re
 import pandas as pd
 import os
 import cv2
+import argparse
 
 
 class AgeGenderCategories:
@@ -208,5 +209,13 @@ class AgeGenderCategories:
             raise
 
 
-obj = AgeGenderCategories()
-obj.startProcess("images")
+if __name__ == '__main__':
+    my_parser = argparse.ArgumentParser()
+    my_parser.add_argument('--images_folder ', action='store', type=str, required=True)
+    args = my_parser.parse_args()
+    images_folder = args.images_folder
+    obj = AgeGenderCategories()
+    obj.startProcess(images_folder)
+
+
+
