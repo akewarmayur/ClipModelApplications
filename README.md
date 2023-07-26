@@ -45,7 +45,7 @@ The output of the model has been saved in following format
 ### Detecting Age Gender Categories
 The extracted faces and the list of prompts containing the age and gender are passed to the CLIP model to predict the age and gender.
 ```
-python detectEmotions.py --images_folder "images_folder"
+python ageGenderCategories.py --images_folder "images_folder"
 ```
 ### Details
 * The prompts are saved in ageGenderPrompts.py file (Location: prompts folder).
