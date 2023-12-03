@@ -12,6 +12,7 @@ emotion_prompt = {
     "a facial expressions depicting shock": "shock",
     "a facial expressions depicting frustration": "frustration",
     "a facial expressions depicting confusion": "confusion",
+    "a neutral expression face": "neutral",
 
 
 }
